@@ -11,3 +11,12 @@ Future developments:
 - Allow pages to be split in format of 1-5, 7, 8-12 (commas and dashes)
 - OCR of PDFs
 - GUI
+
+
+
+
+
+
+
+
+## This line was added to the ocr branch
