@@ -22,8 +22,21 @@ def CheckEnvironment():
     if sys.platform[:3] == 'win':
         print("Program not set to run on windows yet - please speak to Andrew Craik")
         return False
+    else:
+        return True
 
-
+def FileExists(file, verbose=True):
+    check = os.path.exists(file)
+    
+    if not check:
+        print("File does not exist: {} ".format(file))
+        return check
+    else:
+        if verbose:
+            print("File exists {}".format(file))
+        return check
+    
+    
 def SplitDocs(control, dupfile):
 
     """ This will split pages when given 'input, start, end, output, newfolder, foldername'
@@ -43,7 +56,7 @@ def SplitDocs(control, dupfile):
         ## Get folder and path names
         if control.newfolder[i] == 'yes':
 
-            pdb.set_trace()
+            #pdb.set_trace()
             #if control.foldername
             foldername = control.foldername[i]
             folderpath = os.path.join(".", foldername)
@@ -139,19 +152,56 @@ def reduceSize(fileIn, fileOut):
         else:
             a = input("Choose Y or N.  Function terminating")
             return False
+        
+def InterleavePages(oddPages, evenPages, fileOut):
+    
+    """ 
+        Purpose: Collate odd/evens scanned pages
+        
+        Command (1): "pdftk A=odd_pages.pdf B=even_pages.pdf shuffle A B output collated_pages.pdf"
+        Command (2): pdftk A=odd_pages.pdf B=even_pages.pdf shuffle A Bend-1 output collated_pages.pdf
+        Author: Andrew Craik
+        
+        Date:   2019-03-18
+    """
+    ## Source: https://www.pdflabs.com/blog/how-to-collate-even-odd-scanned-pages/
+    
+    ## If both input files exist
+    if FileExists(oddPages) and FileExists(evenPages):
+        
+        ## Check if output file exists already - stop if so
+        if FileExists(fileOut):
+            a = input("Program terminating. Press return.")
+            return False
+        
+        ## Output file doesn't exist, can continue
+        else:
+            pass
+            
+            cmd = "pdftk A={} B={} shuffle A Bend-1 output {}".format(oddPages, evenPages, fileOut)
+            print("Command = {}".format(cmd))
+            input("Press enter to continue")
+            os.system(cmd)
+    
+    
+    
+    
+oddPages= os.path.join(os.getenv("HOME"), 'scanning', 'hpscan001_reduced.pdf')
+evenPages  = os.path.join(os.path.dirname(oddPages), 'hpscan001-reverse-reduced.pdf')
+fileOut = os.path.join(os.path.dirname(oddPages), 'hpscan001-interleave.pdf')
 
-testFileIn = os.path.join('..', '..', 'pdf-split-test', '2016-03-16-mortgage-first-key-facts.pdf')
-testFileOut = os.path.join('..', '..', 'pdf-split-test', '2016-03-16-mortgage-first-key-facts_reduce1.pdf')
+print("Path = {}".format(os.path.abspath('~')))
+
 if __name__ == "__main__":
     pass
 
     ## Check environment running in
     if CheckEnvironment():
-        
+        #print("Blah")
         #with open(fname, 'rt') as f:
         control = pd.read_csv(fname)
 
         print("\n"*2)
-        #SplitDocs(control, dupfile)
+        SplitDocs(control, dupfile)
 
 

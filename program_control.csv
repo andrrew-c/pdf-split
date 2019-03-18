@@ -1,4 +1,10 @@
-inputdoc,pagestart,pageend,name,newfolder,foldername
-2016-03-16-mortgage-first-key-facts,1,2,2016-03-16-mortgage-first-key-facts_intro,yes,
-2016-03-16-mortgage-first-key-facts,3,6,2016-03-16-mortgage-first-key-facts_intro2,yes,
-2016-03-16-mortgage-first-key-facts,7,end,2016-03-16-mortgage-first-key-facts_intro3,yes,
+inputdoc,pagestart,pageend,name,newfolder,foldername,deleteevenpages
+/home/andrewc/scanning/hpscan001-interleave,1,2,2018-04-01-thames-water-bill-annual,yes,/home/andrewc/scanning/output,
+/home/andrewc/scanning/hpscan001-interleave,3,4,2018-03-07-m_n_s-annual-statement,yes,/home/andrewc/scanning/output,
+/home/andrewc/scanning/hpscan001-interleave,5,5,2018-08-01-disclosue-barring-dbs-check,yes,/home/andrewc/scanning/output,
+/home/andrewc/scanning/hpscan001-interleave,7,7,2018-03-worth-grove-contact-information,yes,/home/andrewc/scanning/output,
+/home/andrewc/scanning/hpscan001-interleave,9,29,2018-03-worth-grove-tenant-information,yes,/home/andrewc/scanning/output,
+/home/andrewc/scanning/hpscan001-interleave,31,49,2018-03-worth-grove-tenancy-depsosit-scheme,yes,/home/andrewc/scanning/output,
+/home/andrewc/scanning/hpscan001-interleave,51,57,2018-03-worth-grove-energy-performance-certificate,yes,/home/andrewc/scanning/output,
+/home/andrewc/scanning/hpscan001-interleave,59,61,2018-03-worth-grove-contract-letter,yes,/home/andrewc/scanning/output,
+/home/andrewc/scanning/hpscan001-interleave,63,end,2018-03-worth-grove-contract-full,yes,/home/andrewc/scanning/output,
