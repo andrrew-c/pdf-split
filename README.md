@@ -13,3 +13,10 @@ Future developments:
 - Allow pages to be split in format of 1-5, 7, 8-12 (commas and dashes)
 - OCR of PDFs
 - GUI
+
+## interlave-scanned-pages
+
+### Source: https://www.pdflabs.com/blog/how-to-collate-even-odd-scanned-pages/
+
+### Dependencies: pdftk
+
