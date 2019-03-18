@@ -12,14 +12,17 @@ dupfile = 'duplicates.csv'
 
 #f = open(fname, 'rt')
 
-#with open(fname, 'rt') as f:
-control = pd.read_csv(fname)
-
 
 ##params = []
 ##for row in control:
 ##    params.append(row)
 #    print(row)
+
+def CheckEnvironment():
+    if sys.platform[:3] == 'win':
+        print("Program not set to run on windows yet - please speak to Andrew Craik")
+        return False
+
 
 def SplitDocs(control, dupfile):
 
@@ -85,8 +88,70 @@ def dealWithDups(i, control, dups):
     #dups.write(",{},{}".format(datetime.now().strftime("%Y-%m-%d"),datetime.now().strftime("%H-%m-%S")))
     #continue
                             
+def reduceSize(fileIn, fileOut):
+    """ 
+        Purpose: Reduce size of PDF without losing quality
+        
+        Notes: 
+            This progam uses ghostscript to reduce the size of the PDF.
+            The aim is not to lose too much of the quality.
+            
+            Source code:
+                
+            fileIn: Name/path of file to read in
+            fileOut: Name/path of file to read out
+            gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/default \
+                -dNOPAUSE -dQUIET -dBATCH -dDetectDuplicateImages \
+                    -dCompressFonts=true -r150 -sOutputFile=output.pdf input.pdf
+                
+        Author: Andrew Craik
+        Date: 2019-03-18
+    """
+    
+    ## Create command to run on system
+    cmd = "gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/default \
+            -dNOPAUSE -dQUIET -dBATCH -dDetectDuplicateImages \
+            -dCompressFonts=true -r300 -sOutputFile={} {}".format(fileOut, fileIn)
+    
+    
+    ## Check input file exists
+    if not os.path.exists(fileIn):
+        a = input("Input file '{}' does not exist.  Program will stop.\nPress Enter... ".format(fileIn))
+        return False
+    if os.path.exists(fileOut):
+        print("File '{}' already exists.  Process will stop.".format(fileout))
+    else:
+        print("File '{}' does not already exist".format(fileOut))
+        print("This function will attempt to convert the PDF called {} to become {}.".format(os.path.abspath(fileIn), os.path.abspath(fileOut)))
+        print("\nCommand will be {}".format(cmd))
 
+        ## Check user wants to continue
+        check = input("Do you want to continue? Y/N ")
+        if check.upper() == "Y":
+            os.system(cmd)
+        
+        ## User said no
+        elif check.upper() == "N":
+            print("User cancelled")
+            return False
+        
+        ## User pressed another option - stop
+        else:
+            a = input("Choose Y or N.  Function terminating")
+            return False
+
+testFileIn = os.path.join('..', '..', 'pdf-split-test', '2016-03-16-mortgage-first-key-facts.pdf')
+testFileOut = os.path.join('..', '..', 'pdf-split-test', '2016-03-16-mortgage-first-key-facts_reduce1.pdf')
 if __name__ == "__main__":
-    SplitDocs(control, dupfile)
+    pass
+
+    ## Check environment running in
+    if CheckEnvironment():
+        
+        #with open(fname, 'rt') as f:
+        control = pd.read_csv(fname)
+
+        print("\n"*2)
+        #SplitDocs(control, dupfile)
 
 

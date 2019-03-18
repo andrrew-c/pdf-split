@@ -13,4 +13,14 @@ Future developments:
 - GUI
 
 
-## This line was added by into the reduce-size branch
+## Reduce size of files
+
+The scanned PDFs using hplip are too large.  This part of the program contains 
+
+### Compress of PDFs
+https://askubuntu.com/questions/207447/how-to-reduce-the-size-of-a-pdf-file
+
+### Dependencies
+
+gs - Ghostscript
+https://www.ghostscript.com/
