@@ -140,8 +140,12 @@ def reduceSize(fileIn, fileOut):
             a = input("Choose Y or N.  Function terminating")
             return False
 
-testFileIn = os.path.join('..', '..', 'pdf-split-test', '2016-03-16-mortgage-first-key-facts.pdf')
-testFileOut = os.path.join('..', '..', 'pdf-split-test', '2016-03-16-mortgage-first-key-facts_reduce1.pdf')
+#testFileIn = os.path.join('/..', '..', 'pdf-split-test', '2016-03-16-mortgage-first-key-facts.pdf')
+#testFileOut = os.path.join('..', '..', 'pdf-split-test', '2016-03-16-mortgage-first-key-facts_reduce1.pdf')
+   
+sdirect = os.path.abspath("/home/andrewc/scanning")         
+ffront= os.path.join(sdirect, 'contract-20190320-front.pdf')
+ffrev = os.path.join(sdirect, 'contract-20190320-reverse.pdf') 
 if __name__ == "__main__":
     pass
 
@@ -153,5 +157,9 @@ if __name__ == "__main__":
 
         print("\n"*2)
         #SplitDocs(control, dupfile)
+        
+        reduceSize(ffront,  'contract-20190320-front-compressed.pdf')
+        reduceSize(ffrev,  'contract-20190320-reverse-compressed.pdf')
+        
 
 
